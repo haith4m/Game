@@ -1,0 +1,85 @@
+[gd_scene load_steps=12 format=3 uid="uid://csie0kr5gefof"]
+
+[ext_resource type="Script" path="res://scripts/idle-boss.gd" id="1_ayuwk"]
+[ext_resource type="Texture2D" uid="uid://bcuisqc4r6s15" path="res://assets/sprites/MAIN SPRITESHEET.png" id="1_ciyea"]
+[ext_resource type="PackedScene" uid="uid://d1o67wpe7ens4" path="res://scenes/killzone.tscn" id="2_byik8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5u13"]
+atlas = ExtResource("1_ciyea")
+region = Rect2(0, 0, 288, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmemf"]
+atlas = ExtResource("1_ciyea")
+region = Rect2(288, 0, 288, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sr22y"]
+atlas = ExtResource("1_ciyea")
+region = Rect2(576, 0, 288, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nt8qh"]
+atlas = ExtResource("1_ciyea")
+region = Rect2(864, 0, 288, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2yy5"]
+atlas = ExtResource("1_ciyea")
+region = Rect2(1152, 0, 288, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lhs6h"]
+atlas = ExtResource("1_ciyea")
+region = Rect2(1440, 0, 288, 160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qnfvl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c5u13")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmemf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sr22y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nt8qh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u2yy5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lhs6h")
+}],
+"loop": true,
+"name": &"idle boss",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wqraf"]
+size = Vector2(41, 64.5)
+
+[node name="Boss" type="Node2D"]
+position = Vector2(13, 46)
+script = ExtResource("1_ayuwk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-15, -114)
+scale = Vector2(0.645834, 0.782031)
+sprite_frames = SubResource("SpriteFrames_qnfvl")
+animation = &"idle boss"
+autoplay = "idle boss"
+frame_progress = 0.522214
+
+[node name="Killzone" parent="." instance=ExtResource("2_byik8")]
+position = Vector2(38, -36)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(-50, -43)
+shape = SubResource("RectangleShape2D_wqraf")
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+position = Vector2(3, -77)
+target_position = Vector2(12, 0)
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+position = Vector2(-25, -77)
+target_position = Vector2(-16, 0)

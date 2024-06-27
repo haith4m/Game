@@ -1,2 +1,5 @@
-res://scenes/Enemy.tscn
 res://scenes/Game.tscn
+res://scenes/coin.tscn
+res://scenes/killzone.tscn
+res://scenes/idle-boss.tscn
+res://scripts/idle-boss.gd
